@@ -134,7 +134,7 @@ def estimar_estrellas(sentimiento_general: str, confianza: float, aspectos: dict
     """Combina el sentimiento general (del clasificador) con los aspectos
     detectados (del léxico) en una estimación de estrellas de 1 a 5.
 
-    Fórmula (documentada y explicable para la defensa del proyecto):
+    Fórmula:
         base = 3  (punto neutro)
         + 2 * confianza  si el sentimiento general es positivo
         - 2 * confianza  si el sentimiento general es negativo

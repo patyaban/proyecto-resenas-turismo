@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Analizador de Reseñas de Turismo · PLN</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/estilos.css" />
+</head>
+<body>
+  <header class="cabecera">
+    <p class="eyebrow">Maestría en Ciencia de Datos e Inteligencia Artificial Aplicada · Módulo de PLN</p>
+    <h1>Analizador de Reseñas de Turismo</h1>
+    <p class="subtitulo">Hoteles y restaurantes en español · sentimiento por aspecto + estrellas estimadas</p>
+  </header>
+
+  <main class="contenedor">
+    <!-- Panel de análisis -->
+    <section class="tarjeta">
+      <h2>Pega una reseña</h2>
+      <textarea id="entrada" rows="4"
+        placeholder="Ej: La comida estuvo deliciosa y el servicio fue muy atento, aunque los precios son un poco altos."></textarea>
+
+      <div class="selector-modelo">
+        <span class="selector-etiqueta">Modelo de sentimiento:</span>
+        <label class="chip-radio">
+          <input type="radio" name="modelo" value="clasico" checked />
+          <span>Clásico (Naive Bayes)</span>
+        </label>
+        <label class="chip-radio">
+          <input type="radio" name="modelo" value="neuronal" />
+          <span>Neuronal (GRU)</span>
+        </label>
+      </div>
+
+      <div class="acciones">
+        <button id="btn-analizar" class="btn-principal">Analizar reseña</button>
+        <button id="btn-limpiar" class="btn-secundario">Limpiar</button>
+      </div>
+
+      <p class="ejemplos-titulo">Prueba rápida:</p>
+      <div class="ejemplos" id="ejemplos"></div>
+
+      <!-- Resultado -->
+      <div id="resultado" class="resultado oculto">
+
+        <div class="fila-resultado-superior">
+          <div class="bloque-estrellas">
+            <div class="estrellas" id="estrellas"></div>
+            <div class="estrellas-etiqueta">estrellas estimadas</div>
+          </div>
+          <div class="bloque-sentimiento">
+            <span id="emoji-resultado" class="emoji"></span>
+            <div>
+              <div class="sentimiento" id="sentimiento-texto"></div>
+              <div class="confianza" id="confianza-texto"></div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="subtitulo-seccion">Sentimiento por aspecto</h3>
+        <div class="aspectos" id="aspectos"></div>
+
+        <div id="tema-dominante" class="tema-dominante oculto">
+          <span class="tema-etiqueta">Tema dominante (LDA):</span>
+          <span id="tema-palabras"></span>
+        </div>
+      </div>
+
+      <div id="cargando" class="cargando oculto">Analizando…</div>
+      <div id="error" class="error oculto"></div>
+    </section>
+
+    <!-- Panel lateral -->
+    <aside class="tarjeta lateral">
+      <h2>Clásico vs. neuronal</h2>
+      <div id="comparacion" class="comparacion">Cargando métricas…</div>
+
+      <h2 class="con-margen">Temas descubiertos (LDA)</h2>
+      <div id="temas" class="temas">Cargando temas…</div>
+
+      <h2 class="con-margen">Pipeline</h2>
+      <ol class="pipeline">
+        <li><strong>Preprocesamiento</strong><br><span>limpieza + normalización reutilizable</span></li>
+        <li><strong>Representación</strong><br><span>TF-IDF (clásico) / Embeddings (neuronal)</span></li>
+        <li><strong>Modelado de temas</strong><br><span>LDA no supervisado</span></li>
+        <li><strong>Clasificación</strong><br><span>Naive Bayes vs. GRU bidireccional</span></li>
+        <li><strong>Aspectos + estrellas</strong><br><span>léxico de polaridad</span></li>
+      </ol>
+    </aside>
+  </main>
+
+  <footer class="pie">
+    Universidad Católica Boliviana "San Pablo" · Proyecto final · Módulo de Procesamiento de Lenguaje Natural
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+# Dependencias del proyecto — Analizador de reseñas de turismo (hoteles y restaurantes)
+# Instalar con:  pip install -r requirements.txt
+
+# Núcleo: datos, ML clásico y API
+scikit-learn>=1.3
+pandas>=2.0
+joblib>=1.3
+numpy>=1.24
+fastapi>=0.110
+uvicorn[standard]>=0.27
+pydantic>=2.0
+
+# Modelo neuronal (LSTM/GRU) — src/entrenar_neuronal.py
+# Nota: es la dependencia más pesada del proyecto. Si tu entorno no la puede
+# instalar (por espacio/tiempo), el resto del sistema (clásico + LDA +
+# aspectos + API + interfaz web) funciona igual sin ella.
+tensorflow>=2.15

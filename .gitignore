@@ -1,0 +1,19 @@
+# Entornos virtuales
+venv/
+.venv/
+env/
+
+# Artefactos de Python
+__pycache__/
+*.pyc
+
+# Modelos, métricas y artefactos de datos generados
+# (se recrean ejecutando los scripts de src/, no se versionan)
+modelos/*.joblib
+modelos/*.json
+modelos/*.keras
+modelos/*.h5
+modelos/resenas_con_tema.csv
+
+# Sistema
+.DS_Store

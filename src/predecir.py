@@ -65,7 +65,7 @@ class Predictor:
             self.tokenizer_neuronal = joblib.load(ruta_tokenizer)
             self.codificador_neuronal = joblib.load(ruta_codificador)
         except ImportError:
-            # tensorflow no está instalado: seguimos solo con el modelo clásico.
+            
             self.modelo_neuronal = None
 
     @property
@@ -151,8 +151,7 @@ class Predictor:
 
 @lru_cache(maxsize=1)
 def obtener_predictor() -> Predictor:
-    """Carga los modelos una sola vez (cache) para no releerlos del disco en
-    cada petición HTTP."""
+   
     return Predictor()
 
 

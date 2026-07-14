@@ -3,9 +3,7 @@ from __future__ import annotations
 import re
 import unicodedata
 
-# Stopwords en español (lista reducida y curada). Se excluyen a propósito las
-# negaciones porque invierten el sentimiento y el análisis por aspecto depende
-# de detectarlas correctamente (p. ej. "la limpieza no fue buena").
+
 STOPWORDS_ES = {
     "el", "la", "los", "las", "un", "una", "unos", "unas", "de", "del", "al",
     "a", "ante", "con", "en", "para", "por", "sin", "sobre", "tras", "y", "o",
@@ -13,9 +11,7 @@ STOPWORDS_ES = {
     "es", "son", "fue", "ser", "está", "están", "este", "esta", "estos",
     "estas", "ese", "esa", "eso", "muy", "más", "menos", "ya", "también",
     "pero", "como", "cuando", "porque", "si", "yo", "tú", "él", "ella", "nos",
-    # Conectores discursivos frecuentes en reseñas ("por otro lado", "además",
-    # "en cuanto al resto"...). No aportan significado de aspecto/sentimiento
-    # y sin ellos los temas descubiertos por LDA quedan mucho más limpios.
+    
     "además", "asimismo", "resto", "cuanto", "otro", "otros", "lado",
     "todo", "todos",
 }

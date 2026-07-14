@@ -24,8 +24,6 @@ Preprocesamiento  →  TF-IDF/Embeddings  →  LDA (temas)  →  Naive Bayes / G
 | 3 | Análisis de sentimientos (general + por aspecto) | `src/entrenar_clasico.py`, `src/entrenar_neuronal.py`, `src/analisis_aspectos.py` |
 | 4 | Comparación clásico vs. neuronal con métricas | `src/entrenar_clasico.py` (Naive Bayes) + `src/entrenar_neuronal.py` (GRU) + `src/comparar_modelos.py` |
 | 5 | Interfaz de uso funcional | `web/` + `api/app.py` |
-| 6 | Presentación con demo en vivo | Usa la interfaz corriendo (`uvicorn`) durante la defensa |
-| 7 | Informe breve + repositorio | **[`INFORME.md`](INFORME.md)** (resultados reales e interpretación) + este repositorio |
 
 ---
 
@@ -61,11 +59,6 @@ python -m src.modelado_temas              # LDA         -> modelos/lda_modelo.jo
 python -m src.comparar_modelos            # tabla comparativa -> modelos/comparacion.json
 ```
 
-Puedes correr solo `entrenar_clasico.py` + `modelado_temas.py` si quieres
-probar el sistema rápido sin instalar `tensorflow`; la API detecta
-automáticamente si el modelo neuronal no existe y sigue funcionando solo con
-el clásico.
-
 ### 4. Levantar la aplicación web + API
 
 ```bash
@@ -96,7 +89,6 @@ proyecto-resenas-turismo/
 │   └── predecir.py               Orquesta todo para la inferencia
 ├── modelos/                     Modelos y métricas (generados, no versionados)
 ├── web/                          Interfaz (HTML + CSS + JS)
-├── INFORME.md                    Informe breve con resultados reales e interpretación
 ├── requirements.txt
 └── README.md
 ```
@@ -169,14 +161,12 @@ Respuesta esperada (aproximada):
 
 ---
 
-## 🎓 Ideas para la presentación / posibles mejoras
+## 🎓 Recomendaciones
 
 1. Sustituir el dataset sintético por reseñas reales de TripAdvisor en
-   español y comparar la caída de exactitud — buena discusión sobre
-   generalización.
+   español y comparar la caída de exactitud.
 2. Ampliar `entrenar_neuronal.py` para usar BETO (Transformer preentrenado en
-   español) en vez de GRU si el entorno de defensa tiene acceso a internet
-   (el propio archivo trae la sección de código comentada para ese reemplazo).
+   español) en vez de GRU si el entorno de defensa tiene acceso a internet.   
 3. Entrenar un modelo de aspectos supervisado (en vez de léxico) si se
    consigue un corpus con anotaciones a nivel de oración.
 4. Agregar un modo "lote" en la interfaz web que suba un CSV y muestre el

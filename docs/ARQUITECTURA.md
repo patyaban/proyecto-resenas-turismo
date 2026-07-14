@@ -41,11 +41,11 @@ documentado.
                           estrellas_estimadas (fórmula que combina ambos)
 ```
 
-## 2. Por qué DOS ramas de entrenamiento (requisito #4)
+## 2. Dos ramas de entrenamiento (requisito #4)
 
-El enunciado exige comparar un enfoque **clásico** (Naive Bayes) contra uno
-**neuronal** (LSTM/GRU o Transformer). Por eso el proyecto tiene DOS scripts de
-entrenamiento independientes que predicen la MISMA columna
+En este proyecto se realizo la comparacion de un enfoque **clásico** (Naive Bayes) contra uno
+**neuronal** (LSTM/GRU o Transformer). Por eso el proyecto tiene dos scripts de
+entrenamiento independientes que predicen la misma columna
 (`sentimiento_general`) sobre la MISMA partición train/test:
 
 ```
@@ -74,7 +74,7 @@ comparación de F1/exactitud no sería justa.
 
 ## 3. Del sentimiento general a "estrellas + aspectos"
 
-El enunciado, para este caso de uso, pide que la interfaz muestre
+Para este caso de uso, pide que la interfaz muestre
 **"estrellas estimadas + aspectos"**, no solo un sentimiento de 3 clases. Esto
 se resuelve en `src/analisis_aspectos.py` y se orquesta en `src/predecir.py`:
 
@@ -85,9 +85,7 @@ se resuelve en `src/analisis_aspectos.py` y se orquesta en `src/predecir.py`:
    supervisado adicional por aspecto** (no tendríamos etiquetas a nivel de
    oración en un corpus real).
 3. `estimar_estrellas()` combina ambas señales (sentimiento general +
-   aspectos) en una fórmula explicable con una sola línea de justificación
-   (ver el docstring de esa función) — importante para poder defender
-   "por qué el sistema dio 4 estrellas y no 5" en la presentación en vivo.
+   aspectos).
 
 ## 4. Decisiones de diseño y su justificación
 
@@ -144,5 +142,3 @@ proyecto-resenas-turismo/
 | 3 | Análisis de sentimientos (general y por aspecto) | `src/entrenar_clasico.py` / `src/entrenar_neuronal.py` (general) + `src/analisis_aspectos.py` (por aspecto) |
 | 4 | Comparación clásico vs. neuronal con métricas | `src/entrenar_clasico.py`, `src/entrenar_neuronal.py`, `src/comparar_modelos.py`, expuesto en `GET /metricas` |
 | 5 | Interfaz de uso funcional | `web/` + `api/app.py` (modo "una opinión": pega una reseña → estrellas + aspectos) |
-| 6 | Presentación final con demo en vivo | Fuera del código: usar la interfaz web corriendo en vivo |
-| 7 | Informe breve + repositorio de código | [`INFORME.md`](../INFORME.md) (resultados reales e interpretación) + el propio repositorio |

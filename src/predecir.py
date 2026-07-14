@@ -25,9 +25,7 @@ LONGITUD_MAXIMA_NEURONAL = 40
 
 
 class Predictor:
-    """Envuelve los modelos entrenados (clásico, neuronal y LDA) y produce una
-    respuesta unificada por reseña."""
-
+   
     def __init__(
         self,
         ruta_clasico: str = RUTA_MODELO_CLASICO,
@@ -45,16 +43,13 @@ class Predictor:
         self.pipeline_clasico = joblib.load(ruta)
         self.clases_clasico = list(self.pipeline_clasico.named_steps["clasificador"].classes_)
 
-        # El modelo neuronal es OPCIONAL: si no fue entrenado (o falta
-        # tensorflow en el entorno), la API sigue funcionando solo con el
-        # modelo clásico en vez de fallar por completo.
+       
         self.modelo_neuronal = None
         self.tokenizer_neuronal = None
         self.codificador_neuronal = None
         self._cargar_modelo_neuronal(ruta_neuronal, ruta_tokenizer, ruta_codificador)
 
-        # El modelo LDA también es opcional (requisito #2, pero no bloquea
-        # la respuesta de sentimiento/aspectos/estrellas si aún no se entrenó).
+       
         self.lda_bundle = None
         ruta_lda_path = Path(ruta_lda)
         if ruta_lda_path.exists():

@@ -20,11 +20,7 @@ from src.preprocesamiento import normalizar
 
 
 def construir_vectorizador() -> CountVectorizer:
-    """LDA trabaja sobre conteos de palabras (no TF-IDF): usa la frecuencia
-    cruda de cada término, porque el modelo generativo de LDA asume que los
-    documentos se generan mezclando temas que a su vez generan palabras según
-    su frecuencia — TF-IDF ya "aplana" esa frecuencia y distorsiona el
-    supuesto del modelo."""
+   
     return CountVectorizer(
         preprocessor=normalizar,
         max_df=0.90,   # ignora palabras presentes en más del 90% de los documentos (demasiado genéricas)
@@ -48,12 +44,7 @@ def entrenar_lda(textos: list[str], n_temas: int, semilla: int = 42):
 
 def extraer_temas(lda: LatentDirichletAllocation, vectorizador: CountVectorizer,
                    n_palabras: int = 10) -> list[dict]:
-    """Para cada tema, devuelve las `n_palabras` con mayor peso.
-
-    `lda.components_` es una matriz (n_temas x n_vocabulario) donde cada celda
-    es el peso de una palabra dentro de un tema. Ordenar esa fila de mayor a
-    menor y tomar las primeras N nos da las palabras más representativas.
-    """
+   
     vocabulario = vectorizador.get_feature_names_out()
     temas = []
     for indice_tema, pesos in enumerate(lda.components_):
@@ -67,9 +58,7 @@ def extraer_temas(lda: LatentDirichletAllocation, vectorizador: CountVectorizer,
 
 
 def asignar_tema_dominante(lda: LatentDirichletAllocation, matriz) -> list[int]:
-    """Para cada documento, devuelve el índice del tema con mayor probabilidad
-    (`transform` da, por documento, la distribución de probabilidad sobre los
-    temas; tomamos el argmax)."""
+    
     distribucion = lda.transform(matriz)
     return distribucion.argmax(axis=1).tolist()
 
@@ -107,9 +96,7 @@ def main() -> None:
     ruta_csv_temas = Path(args.salida).parent / "resenas_con_tema.csv"
     df_salida.to_csv(ruta_csv_temas, index=False)
 
-    # Guardamos también el vectorizador + el modelo LDA ya ajustados (no solo
-    # las palabras clave en JSON) para poder calcular el tema dominante de una
-    # reseña NUEVA en el momento de la inferencia, sin tener que reentrenar.
+    
     ruta_modelo_lda = Path(args.salida).parent / "lda_modelo.joblib"
     joblib.dump({"vectorizador": vectorizador, "lda": lda, "temas": temas}, ruta_modelo_lda)
 

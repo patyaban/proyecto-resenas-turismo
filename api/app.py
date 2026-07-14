@@ -1,14 +1,4 @@
 """
-API REST del sistema de análisis de reseñas de turismo + servidor de la
-interfaz web (Requisito obligatorio #5: "Interfaz de uso funcional").
-
-El enunciado sugiere Gradio, Streamlit o ipywidgets para la interfaz, pero
-como este proyecto sigue la MISMA arquitectura del proyecto de referencia
-(FastAPI + HTML/CSS/JS servidos por el mismo proceso), usamos ese enfoque:
-cumple igual el requisito ("una interfaz simple que reciba texto... y muestre
-los resultados... FUNCIONE"), y además queda todo en un solo comando
-(`uvicorn`), sin depender de Colab.
-
 Expone:
     GET  /                -> interfaz web (HTML)
     GET  /salud           -> estado del servicio y de los modelos cargados

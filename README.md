@@ -135,15 +135,10 @@ Respuesta esperada (aproximada):
   `src/generar_dataset.py --semilla`).
 - Cada reseña combina de 2 a 4 aspectos mencionados al azar, cada uno con su
   propio sentimiento; el `sentimiento_general` y las `estrellas` se derivan
-  matemáticamente de esos aspectos (dataset internamente consistente).
+  matemáticamente de esos aspectos.
 - **Desbalance esperado:** hay menos reseñas de 1★/5★ que de 2★-4★ (una
   reseña necesita que TODOS sus aspectos mencionados coincidan en polaridad
-  extrema para llegar a los bordes de la escala) — es un buen punto para
-  discutir desbalance de clases en la presentación (`class_weight`,
-  estratificación, etc. — ver `docs/ARQUITECTURA.md`).
-- Para una práctica más realista, sustituye `data/resenas_turismo.csv` por
-  reseñas reales de TripAdvisor en español y compara cómo cambian las
-  métricas de ambos modelos.
+  extrema para llegar a los bordes de la escala).
 
 ---
 

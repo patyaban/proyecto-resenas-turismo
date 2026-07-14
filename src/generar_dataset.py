@@ -120,9 +120,7 @@ def generar_resena(rng: random.Random) -> dict:
         etiquetas_aspecto[aspecto] = sentimiento
         puntaje_total += PUNTAJE_SENTIMIENTO[sentimiento]
 
-    # Cada cláusula es una oración independiente separada por punto, para que el
-    # texto quede gramaticalmente correcto (y para que, más adelante, el módulo
-    # de aspectos pueda trabajar oración por oración si lo necesita).
+   
     oraciones = [f"En {nombre}, {clausulas[0]}"]
     for clausula in clausulas[1:]:
         oraciones.append(f"{rng.choice(CONECTORES)} {clausula}")
